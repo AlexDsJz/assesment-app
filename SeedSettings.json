@@ -1,0 +1,9 @@
+{
+  "extend": {
+    "actions": []
+  },
+  "last_build_version": "0.5.5",
+  "platform": "reactjs",
+  "project_description": "This repository contains the part of the Frontend for the Romans Assesment",
+  "project_name": "Romanos Frontend Project"
+}
