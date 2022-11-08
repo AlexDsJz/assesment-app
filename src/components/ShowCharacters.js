@@ -5,20 +5,18 @@ import { useGet } from "seed/api";
 import { Loading } from "seed/helpers";
 
 function ShowCharacters({ processId }) {
-    const reqChars = useGet(`/processes/${processId}/characters`);
+  const reqChars = useGet(`/processes/${processId}/characters`);
 
-    if (reqChars.loading) return <Loading / > ;
-    if (reqChars.error) return "Error";
+  if (reqChars.loading) return <Loading />;
+  if (reqChars.error) return "Error";
 
-    const data = reqChars.data;
+  const data = reqChars.data;
 
-    return <View characters = { data }
-    processId = { processId }
-    />;
+  return <View characters={data} processId={processId} />;
 }
 
 ShowCharacters.propTypes = {
-    processId: PropTypes.number.isRequired,
+  processId: PropTypes.number.isRequired,
 };
 
 export default ShowCharacters;

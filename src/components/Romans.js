@@ -4,11 +4,11 @@ import { Loading } from "seed/helpers";
 import View from "components/Romans.view";
 
 function Romans() {
-    const pageSize = 10;
-    const [pageNum, setPageNum] = useState(1);
+  const pageSize = 5;
+  const [pageNum, setPageNum] = useState(1);
 
-    const reqProcess = usePagination(
-        `{
+  const reqProcess = usePagination(
+    `{
         processPagination {
             totalPages
             processes {
@@ -17,23 +17,24 @@ function Romans() {
             }
         }
     }`,
-        pageNum,
-        pageSize
-    );
+    pageNum,
+    pageSize
+  );
 
-    if (reqProcess.loading) return <Loading / > ;
-    if (reqProcess.error) return "ERROR";
+  if (reqProcess.loading) return <Loading />;
+  if (reqProcess.error) return "ERROR";
 
-    const { processes = [], totalPages = 0 } = reqProcess.data.processPagination;
-    const onClickPage = (pageNum) => setPageNum(pageNum);
+  const { processes = [], totalPages = 0 } = reqProcess.data.processPagination;
+  const onClickPage = (pageNum) => setPageNum(pageNum);
 
-    return ( <
-        View processes = { processes }
-        pageNum = { pageNum }
-        totalPages = { totalPages }
-        onClickPage = { onClickPage }
-        />
-    );
+  return (
+    <View
+      processes={processes}
+      pageNum={pageNum}
+      totalPages={totalPages}
+      onClickPage={onClickPage}
+    />
+  );
 }
 
 Romans.propTypes = {};

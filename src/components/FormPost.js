@@ -6,35 +6,33 @@ import { Loading } from "seed/helpers";
 import View from "components/FormPost.view";
 
 function ProcessFormPost({ onCompleted = () => null, onError = () => null }) {
-
-    const reqUsers = useQuery(`{ 
+  const reqUsers = useQuery(`{ 
         users { 
         } 
     }`);
-    const [callRomans, reqRomans] = usePost("/processes/decimal_to_roman", {
-        onCompleted: () => onCompleted()
-    });
+  const [callRomans, reqRomans] = usePost("/processes/decimal_to_roman", {
+    onCompleted: () => 
+        window.location.href = "/romans"
+  });
 
-    if (reqUsers.loading) return <Loading / > ;
-    if (reqUsers.error) return "ERROR";
+  if (reqUsers.loading) return <Loading />;
+  if (reqUsers.error) return "ERROR";
 
-    const { users = [] } = reqUsers.data;
-    const error = reqRomans.error ? "An error has occurred" : null;
+  const { users = [] } = reqUsers.data;
+  const error = reqRomans.error ? "Ocurrió un error" : null;
 
-    const onSubmit = (values) => {
-        callRomans(values);
-    }
+  const onSubmit = (values) => {
+    callRomans(values);
+  };
 
-    return <View
-    users = { users }
-    error = { error }
-    onSubmit = { onSubmit }
-    />;
+  return <View 
+        users={users} error={error}     
+        onSubmit={onSubmit} />;
 }
 
 ProcessFormPost.propTypes = {
-    onCompleted: PropTypes.func,
-    onError: PropTypes.func
+  onCompleted: PropTypes.func,
+  onError: PropTypes.func,
 };
 
 export default ProcessFormPost;

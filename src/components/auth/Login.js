@@ -7,7 +7,7 @@ __Seed builder__
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { usePost } from "seed/api";
-import View from "seed/examples/components/auth/Login.view";
+import View from "components/auth/Login.view";
 
 function Login({ history }) {
 
@@ -20,7 +20,7 @@ function Login({ history }) {
       }
       sessionStorage.setItem("token", data.key);
       sessionStorage.setItem("id", data.user);
-      history.replace("/");
+      history.replace("/romans");
     },
     includeAuth: false
   });
